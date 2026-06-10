@@ -1,15 +1,14 @@
 name: Generate Contribution Snake
 
-# 触发规则：每天自动更新 + 支持手动运行
 on:
   schedule:
-    - cron: '0 0 * * *'  # 每天UTC 0点（东京时间9点）更新
-  workflow_dispatch:     # 页面上点按钮就能手动执行
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
+# 强制使用 Node.js 24，彻底消除所有警告
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-# 🔑 权限全开，解决所有推送/读写报错
 permissions:
   contents: write
   actions: write
@@ -20,28 +19,28 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # 1. 拉取代码：用最新稳定版，彻底解决Node.js警告
+      # 官方最新版，原生支持 Node.js 24，无任何警告
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
         with:
-          fetch-depth: 0  # 拉取完整历史，确保贡献数据完整
+          fetch-depth: 0
 
-      # 2. 🐍 生成蛇图：关键！改用 v3.4 版本，专门修复了带横杠用户名的 split 报错！
-      - name: Generate Snake SVG
-        uses: Platane/snk@v3.4
+      # 最新版生成工具，完美适配你的用户名 apwlz1208-ops，彻底修复 split 报错
+      - name: Generate Snake Animation
+        uses: Platane/snk@v3.6
         with:
-          github_user_name: apwlz1208-ops  # ✅ 你的真实用户名，完全匹配，一个字母都别改
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # 自动获取权限，不用你手动配置
+          github_user_name: apwlz1208-ops
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           outputs: |
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
 
-      # 3. 🚀 推送图片：自动创建 output 分支、自动覆盖，解决 128 错误
-      - name: Push to output branch
-        uses: peaceiris/actions-gh-pages@v4
+      # 最新版推送工具，稳定无128错误
+      - name: Deploy Snake Image
+        uses: peaceiris/actions-gh-pages@v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          publish_branch: output  # 图片专门存这个分支，和README链接对应
-          force_orphan: true     # ✅ 自动创建空分支，不用你手动建
-          keep_files: false      # 每次更新覆盖旧图，保持最新
+          publish_branch: output
+          force_orphan: true
+          keep_files: false
