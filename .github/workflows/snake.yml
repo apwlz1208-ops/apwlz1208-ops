@@ -6,6 +6,9 @@ on:
     - cron: '0 0 * * *'  # 每天UTC 0点（东京时间9点）更新
   workflow_dispatch:     # 页面上点按钮就能手动执行
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 # 🔑 权限全开，解决所有推送/读写报错
 permissions:
   contents: write
