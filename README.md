@@ -16,8 +16,11 @@
 <br>
 
 ## 📊 统计卡片
-![Your Name's GitHub stats](https://github-readme-stats.vercel.app/api?username=apwlz1208-ops&show_icons=true&theme=radical)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=apwlz1208-ops&layout=compact&theme=radical)
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=apwlz1208-ops&show_icons=true&theme=radical&hide_border=true&card_width=400" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=apwlz1208-ops&layout=compact&theme=radical&hide_border=true&card_width=400" />
+</p>
+
 <br>
 ---
 <br>
