@@ -16,7 +16,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0  # 必须，获取完整提交历史
-
       - name: Generate GitHub Contribution Snake
         uses: Platane/snk@v3  # 用稳定版，避免兼容性问题
         with:
