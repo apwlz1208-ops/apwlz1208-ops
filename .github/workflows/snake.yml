@@ -1,6 +1,5 @@
 name: Generate Contribution Snake
 
-# 👇 新增：强制使用 Node.js 24，彻底消除警告
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
@@ -14,23 +13,22 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Generate Snake
+    name: Generate Perfect Snake
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5  # 👈 升级到v5，原生支持Node24
+        uses: actions/checkout@v5
         with:
-          # 必须获取完整提交历史
           fetch-depth: 0
 
-      - name: Generate GitHub Contribution Snake
+      - name: Generate Premium Snake
         uses: Platane/snk@v3
         with:
-          # 你的GitHub用户名
           github_user_name: apwlz1208-ops
+          # 🎨 完美配色方案，和你发的图一致
           outputs: |
-            dist/github-contribution-grid-snake.svg
-            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
-            dist/github-snake-blue.svg?color=007bff
+            dist/github-contribution-grid-snake.svg?palette=github&animate=true&grid=true&scale=1
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark&animate=true&grid=true&scale=1
+            dist/github-snake-colorful.svg?palette=contribution&animate=true&grid=true&scale=1.2
 
       - name: Deploy to output branch
         uses: peaceiris/actions-gh-pages@v4
