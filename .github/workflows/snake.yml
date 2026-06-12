@@ -2,10 +2,10 @@ name: Generate Contribution Snake
 
 on:
   push:
-    branches: [ main ]  # 你的主分支名，不是main就改成master
+    branches: [ main ]
   schedule:
-    - cron: '0 0 * * *'  # 每天0点自动更新，可自定义
-  workflow_dispatch:     # 支持手动触发（调试必备）
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -15,21 +15,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # 必须，获取完整提交历史
+          # 必须获取完整提交历史
+          fetch-depth: 0
+
       - name: Generate GitHub Contribution Snake
-        uses: Platane/snk@v3  # 用稳定版，避免兼容性问题
+        uses: Platane/snk@v3
         with:
-          github_user_name:apwlz1208-ops # 你的GitHub用户名
+          # 这里写你的GitHub用户名
+          github_user_name: apwlz1208-ops
           outputs: |
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
-            dist/github-snake.svg?color=blue
-            dist/github-snake.svg?color=purple&background=222222
+            dist/github-snake-blue.svg?color=007bff
 
       - name: Deploy to output branch
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # 系统自动生成，不用自己建
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          publish_branch: output  # 输出到output分支，干净不污染主分支
-          force_orphan: true   # 只存SVG文件，历史干净
+          publish_branch: output
+          force_orphan: true
