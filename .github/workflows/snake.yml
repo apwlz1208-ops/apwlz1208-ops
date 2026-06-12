@@ -1,46 +1,36 @@
 name: Generate Contribution Snake
 
 on:
+  push:
+    branches: [ main ]  # 你的主分支名，不是main就改成master
   schedule:
-    - cron: '0 0 * * *'
-  workflow_dispatch:
-
-# 强制使用 Node.js 24，彻底消除所有警告
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
-permissions:
-  contents: write
-  actions: write
-  deployments: write
-  pages: write
+    - cron: '0 0 * * *'  # 每天0点自动更新，可自定义
+  workflow_dispatch:     # 支持手动触发（调试必备）
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: Generate Snake
     steps:
-      # 官方最新版，原生支持 Node.js 24，无任何警告
-      - name: Checkout repository
-        uses: actions/checkout@v4.2.2
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0  # 必须，获取完整提交历史
 
-      # 最新版生成工具，完美适配你的用户名 apwlz1208-ops，彻底修复 split 报错
-      - name: Generate Snake Animation
-        uses: Platane/snk@v3.6
+      - name: Generate GitHub Contribution Snake
+        uses: Platane/snk@v3  # 用稳定版，避免兼容性问题
         with:
-          github_user_name: apwlz1208-ops
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_user_name: apwlz1208  # 你的GitHub用户名
           outputs: |
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+            dist/github-snake.svg?color=blue
+            dist/github-snake.svg?color=purple&background=222222
 
-      # 最新版推送工具，稳定无128错误
-      - name: Deploy Snake Image
-        uses: peaceiris/actions-gh-pages@v4.0.0
+      - name: Deploy to output branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # 系统自动生成，不用自己建
           publish_dir: ./dist
-          publish_branch: output
-          force_orphan: true
-          keep_files: false
+          publish_branch: output  # 输出到output分支，干净不污染主分支
+          force_orphan: true     # 只存SVG文件，历史干净
