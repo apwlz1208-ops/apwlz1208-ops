@@ -24,5 +24,17 @@
 <br>
 <br>
 
-## 🐍 贡献
-![Snake animation](https://github.com/apwlz1208-ops/apwlz1208-ops/blob/output/github-contribution-grid-snake.svg)
+## 🐍 贡献动态
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/apwlz1208-ops/apwlz1208-ops/output/github-contribution-grid-snake-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/apwlz1208-ops/apwlz1208-ops/output/github-contribution-grid-snake.svg">
+    <img alt="贡献蛇动画" src="https://raw.githubusercontent.com/apwlz1208-ops/apwlz1208-ops/output/github-contribution-grid-snake.svg" width="80%">
+  </picture>
+</p>
+
+<!-- 👇 可选：加彩色版，更个性 -->
+<p align="center">
+  <img src="https://raw.githubusercontent.com/apwlz1208-ops/apwlz1208-ops/output/github-snake.svg?color=6cc644" width="70%">
+</p>
