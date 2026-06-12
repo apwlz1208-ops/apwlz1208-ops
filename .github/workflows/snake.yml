@@ -33,4 +33,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}  # 系统自动生成，不用自己建
           publish_dir: ./dist
           publish_branch: output  # 输出到output分支，干净不污染主分支
-          force_orphan: true    # 只存SVG文件，历史干净
+          force_orphan: true   # 只存SVG文件，历史干净
