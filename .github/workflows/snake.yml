@@ -1,5 +1,9 @@
 name: Generate Contribution Snake
 
+# 👇 新增：强制使用 Node.js 24，彻底消除警告
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
   push:
     branches: [ main ]
@@ -13,7 +17,7 @@ jobs:
     name: Generate Snake
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5  # 👈 升级到v5，原生支持Node24
         with:
           # 必须获取完整提交历史
           fetch-depth: 0
@@ -21,7 +25,7 @@ jobs:
       - name: Generate GitHub Contribution Snake
         uses: Platane/snk@v3
         with:
-          # 这里写你的GitHub用户名
+          # 你的GitHub用户名
           github_user_name: apwlz1208-ops
           outputs: |
             dist/github-contribution-grid-snake.svg
